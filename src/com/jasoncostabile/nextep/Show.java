@@ -1,19 +1,22 @@
 package com.jasoncostabile.nextep;
 
 public class Show {
-	public int icon;
+	public int iconID;
     public String title;
+    
     public Show(){
         super();
     }
     
-    public Show(int icon, String title) {
+    public Show(int iconID, String title) {
         super();
         
-        this.icon = icon;
+        this.iconID = iconID;
         this.title = title;
     }
     
-    //at WeatherAdapter:
-    //http://www.ezzylearning.com/tutorial.aspx?tid=1763429
+    @Override
+    public String toString() {
+    	return title;
+    }
 }

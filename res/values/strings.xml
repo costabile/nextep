@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="back">&lt;</string>
     <string name="add">+</string>
+    <string name="show_title_default">show_title</string>
 
 </resources>
