@@ -48,6 +48,7 @@ public class ShowListAdapter extends ArrayAdapter<Show> {
         final Show show = shows.get(position);
         if (show != null) {
             holder.icon.setImageResource(show.iconID);
+            holder.icon.setContentDescription(show.title + " " + activity.getString(R.string.thumbnail));
             holder.title.setText(show.title);
         }
         

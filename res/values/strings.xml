@@ -7,5 +7,10 @@
     <string name="back">&lt;</string>
     <string name="add">+</string>
     <string name="show_title_default">show_title</string>
+    <string name="thumbnail">thumbnail</string>
+    <string name="next_episode">Next episode:</string>
+    <string name="next_episode_default">00x00</string>
+    <string name="airs_on">Airs:</string>
+    <string name="airdate_default">Today @ 00:00am</string>
 
 </resources>
