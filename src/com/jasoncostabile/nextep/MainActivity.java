@@ -9,14 +9,14 @@ import android.widget.ListView;
 
 //TheTVDB API key in privnotes.txt
 
-//TODO finish show row layout (line things up horizontally, add next episode airdate + current episode num fields)
 //TODO detail screen for show when clicked on? + edit current ep
-//TODO watched button (increment next episode). Disable when not aired yet?
+//TODO watched button onClick (increment next episode). Disable when not aired yet?
 //TODO adding, deleting shows
 //TODO get info from TheTVDB
 //TODO button to refresh data
 //TODO fix app icon
 //TODO use dark theme
+//TODO menu (settings, donate?, ...)
 
 public class MainActivity extends Activity {
 
