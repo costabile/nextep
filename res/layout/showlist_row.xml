@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:onClick="showClick" >
     
     <ImageView android:id="@+id/imgIcon"
         android:contentDescription="@string/show_title_default"
@@ -35,7 +36,7 @@
 		        android:gravity="center_vertical"
 		        android:hint="@string/show_title_default"
 		        android:textColor="#000000"
-		        android:textSize="22sp"
+		        android:textSize="20sp"
 		        android:textStyle="bold" />
 		    
 		    <LinearLayout
@@ -54,7 +55,7 @@
 			        android:gravity="center_vertical"
 			        android:hint="@string/next_episode"
 			        android:textColor="#000000"
-			        android:textSize="18sp"
+			        android:textSize="16sp"
 			        android:textStyle="normal" />
 			    
 			    <TextView
@@ -66,7 +67,7 @@
 			        android:gravity="center_vertical"
 			        android:hint="@string/next_episode_default"
 			        android:textColor="#000000"
-			        android:textSize="18sp"
+			        android:textSize="16sp"
 			        android:textStyle="normal" />
 			    
 		    </LinearLayout>
@@ -87,7 +88,7 @@
 			        android:gravity="center_vertical"
 			        android:hint="@string/airs_on"
 			        android:textColor="#000000"
-			        android:textSize="18sp"
+			        android:textSize="16sp"
 			        android:textStyle="normal" />
 			    
 			    <TextView
@@ -99,7 +100,7 @@
 			        android:gravity="center_vertical"
 			        android:hint="@string/airdate_default"
 			        android:textColor="#000000"
-			        android:textSize="18sp"
+			        android:textSize="16sp"
 			        android:textStyle="normal" />
 			    
 		    </LinearLayout>
@@ -114,8 +115,8 @@
 		    android:layout_alignParentRight="true"
 		    android:layout_centerVertical="true"
 			android:gravity="center_vertical"
-	        android:drawableLeft="@drawable/watched_button_icon" />
-	        <!-- android:onClick="TODO"-->
+	        android:drawableLeft="@drawable/watched_button_icon"
+	        android:onClick="watchedClick" />
 	
 	</RelativeLayout>
 

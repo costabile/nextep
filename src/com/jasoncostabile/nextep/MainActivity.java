@@ -3,12 +3,15 @@ package com.jasoncostabile.nextep;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ListView;
 
 //TheTVDB API key in privnotes.txt
 
+//TODO in progress: add DB
 //TODO detail screen for show when clicked on? + edit current ep
 //TODO watched button onClick (increment next episode). Disable when not aired yet?
 //TODO adding, deleting shows
@@ -44,4 +47,17 @@ public class MainActivity extends Activity {
 		return true;
 	}
 
+	public void showClick(View view) {
+		new AlertDialog.Builder(this)
+		    .setTitle("Show click")
+		    .setMessage("Show")
+		    .show();
+	}
+	
+	public void watchedClick(View view) {
+		new AlertDialog.Builder(this)
+		    .setTitle("Watched click")
+		    .setMessage("Watched")
+		    .show();
+	}
 }

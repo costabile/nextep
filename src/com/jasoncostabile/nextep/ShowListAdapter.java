@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-//based on: http://sogacity.com/how-to-make-a-custom-arrayadapter-for-listview/
+//reference: http://sogacity.com/how-to-make-a-custom-arrayadapter-for-listview/
 
 public class ShowListAdapter extends ArrayAdapter<Show> {
 	private ArrayList<Show> shows;
