@@ -12,6 +12,9 @@ import android.widget.ListView;
 //TheTVDB API key in privnotes.txt
 
 //TODO in progress: add DB
+	//have the insert method auto-increment ID instead of inserting 1
+	//add column for Icons
+//TODO add nextEp, nextAirdate stuff to Show.java. store date as Calendar?
 //TODO detail screen for show when clicked on? + edit current ep
 //TODO watched button onClick (increment next episode). Disable when not aired yet?
 //TODO adding, deleting shows

@@ -1,8 +1,12 @@
 package com.jasoncostabile.nextep;
 
+import java.util.Calendar;
+
 public class Show {
 	public int iconID;
     public String title;
+    public int nextEpisode;
+    public String nextAirdate;
     
     public Show(){
         super();
