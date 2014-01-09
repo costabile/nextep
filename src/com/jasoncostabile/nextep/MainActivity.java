@@ -12,9 +12,11 @@ import android.widget.ListView;
 //TheTVDB API key in privnotes.txt
 
 //TODO in progress: add DB
-	//have the insert method auto-increment ID instead of inserting 1
 	//add column for Icons
-//TODO add nextEp, nextAirdate stuff to Show.java. store date as Calendar?
+	//finish sql example
+//TODO work out how to get showID. insert into DB first, then return showID to create Show obj?
+//TODO option to set time zone. Apply to date display.
+//TODO representations for airdate unknown and show ended
 //TODO detail screen for show when clicked on? + edit current ep
 //TODO watched button onClick (increment next episode). Disable when not aired yet?
 //TODO adding, deleting shows
@@ -34,7 +36,7 @@ public class MainActivity extends Activity {
 		//----Example show list; remove once real show list is implemented
 		ArrayList<Show> exampleShows = new ArrayList<Show>();
 		for (int i = 0; i <= 5; ++i) {
-			exampleShows.add(i, new Show(R.drawable.show_icon_default, "show" + i));
+			exampleShows.add(i, new Show(i, R.drawable.show_icon_default, "show" + i));
 		}
 		//----
 		ShowListAdapter adapter = new ShowListAdapter(this, R.layout.showlist_row, exampleShows);

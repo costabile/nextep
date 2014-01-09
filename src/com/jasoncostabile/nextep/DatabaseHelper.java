@@ -14,7 +14,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	static final String colTitle = "Title";
 	static final String colIcon = "Icon";
 	static final String colNextEpisode = "NextEpisode";
-	static final String colNextAirdate = "NextAirdate";
+	static final String colNextAirdate = "NextAirdate";		//stored as milliseconds since Jan. 1, 1970
 
 	public DatabaseHelper(Context context) {
 		super(context, dbName, null, 1);	//increment database version number when a DB upgrade is required.
@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				 + colID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				 + colTitle + " TEXT, "
 				 + colNextEpisode + " Integer, "
-				 + colNextAirdate + " TEXT "
+				 + colNextAirdate + " Integer "
 				 + ");");
 	}
 
@@ -41,12 +41,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 		
 		ContentValues cv = new ContentValues();
-		cv.put(colID, 1);
 		cv.put(colTitle, show.title);
 		cv.put(colNextEpisode, show.nextEpisode);
 		cv.put(colNextAirdate, show.nextAirdate);
 		db.insert(showTable, colID, cv);
 
 		db.close();
+	}
+	
+	public int update(Show show)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		ContentValues cv = new ContentValues();
+
+		cv.put(colTitle, show.title);
+		cv.put(colNextEpisode, show.nextEpisode);
+		cv.put(colNextAirdate, show.nextAirdate);
+		return db.update(showTable, cv, colID+"=?", 
+				new String []{String.valueOf(show.ID)});   
 	}
 }
