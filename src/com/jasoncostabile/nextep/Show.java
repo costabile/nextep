@@ -1,20 +1,21 @@
 package com.jasoncostabile.nextep;
 
 public class Show {
-	public int ID;
+	public int ID;				//used to find this show in the local DB
 	public int iconID;
     public String title;
     public int nextEpisode;
-    public int nextAirdate;			//milliseconds since Jan 1, 1970
+    public long nextAirdate;	//milliseconds since Jan 1, 1970
     
     public Show(){
         super();
     }
     
-    public Show(int showID, int iconID, String title) {
+    public Show(String title, int iconID) {
         super();
         
-        this.ID = showID;
+        this.ID = -1;	//-1 indicates that the show was not retrieved from the local database
+        
         this.iconID = iconID;
         this.title = title;
         

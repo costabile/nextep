@@ -12,15 +12,16 @@ import android.widget.ListView;
 //TheTVDB API key in privnotes.txt
 
 //TODO in progress: add DB
-	//add column for Icons
-	//finish sql example
-//TODO work out how to get showID. insert into DB first, then return showID to create Show obj?
+	//add Icons to db methods. Look into how images will be retrieved and stored.
+//TODO db methods: check and return whether successful
+//TODO show list should be orderable
 //TODO option to set time zone. Apply to date display.
-//TODO representations for airdate unknown and show ended
+//TODO nextAirdate: representations for airdate unknown and show ended
 //TODO detail screen for show when clicked on? + edit current ep
 //TODO watched button onClick (increment next episode). Disable when not aired yet?
 //TODO adding, deleting shows
 //TODO get info from TheTVDB
+	//add tvdbID to Show class/db table?
 //TODO button to refresh data
 //TODO fix app icon
 //TODO use dark theme
@@ -33,13 +34,16 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
+		DatabaseHelper db = new DatabaseHelper(this);
+		
 		//----Example show list; remove once real show list is implemented
-		ArrayList<Show> exampleShows = new ArrayList<Show>();
 		for (int i = 0; i <= 5; ++i) {
-			exampleShows.add(i, new Show(i, R.drawable.show_icon_default, "show" + i));
+			db.insert(new Show("show" + i, R.drawable.show_icon_default));
 		}
 		//----
-		ShowListAdapter adapter = new ShowListAdapter(this, R.layout.showlist_row, exampleShows);
+		
+		ArrayList<Show> shows = db.getShows();
+		ShowListAdapter adapter = new ShowListAdapter(this, R.layout.showlist_row, shows);
 
 		ListView showList = (ListView)findViewById(R.id.showList);
 		showList.setAdapter(adapter);

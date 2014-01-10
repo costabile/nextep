@@ -1,7 +1,10 @@
 package com.jasoncostabile.nextep;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -26,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		 db.execSQL("CREATE TABLE " + showTable + " ( "
 				 + colID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				 + colTitle + " TEXT, "
+				 + colIcon + " TEXT, "
 				 + colNextEpisode + " Integer, "
 				 + colNextAirdate + " Integer "
 				 + ");");
@@ -59,6 +63,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		cv.put(colNextEpisode, show.nextEpisode);
 		cv.put(colNextAirdate, show.nextAirdate);
 		return db.update(showTable, cv, colID+"=?", 
-				new String []{String.valueOf(show.ID)});   
+				new String[]{String.valueOf(show.ID)});   
+	}
+	
+	public void delete(int showID)
+	{
+		SQLiteDatabase db = this.getWritableDatabase();
+		
+		db.delete(showTable, colID+"=?", new String[]{String.valueOf(showID)});
+		
+		db.close();
+	}
+	
+	public ArrayList<Show> getShows()
+	{
+		SQLiteDatabase db = this.getReadableDatabase();
+		
+		String[] columns = new String[]{colID, colTitle, colIcon, colNextEpisode, colNextAirdate};
+		Cursor c = db.query(showTable, columns, null, null, null, null, null);
+		
+		int id = c.getColumnIndex(colID);
+		int title = c.getColumnIndex(colTitle);
+		int icon = c.getColumnIndex(colIcon);
+		int nextEpisode = c.getColumnIndex(colNextEpisode);
+		int nextAirdate = c.getColumnIndex(colNextAirdate);
+		ArrayList<Show> shows = new ArrayList<Show>();
+		while (c.moveToNext()) {
+			Show show = new Show(c.getString(title), c.getInt(icon));
+			show.ID = c.getInt(id);
+			show.nextEpisode = c.getInt(nextEpisode);
+			show.nextAirdate = c.getLong(nextAirdate);
+			
+			shows.add(show);
+		}
+
+		c.close();
+		db.close();
+		
+		return shows;
 	}
 }
