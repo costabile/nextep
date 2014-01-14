@@ -11,8 +11,8 @@ import android.widget.ListView;
 
 //TheTVDB API key in privnotes.txt
 
-//TODO in progress: add DB
-	//add Icons to db methods. Look into how images will be retrieved and stored.
+//TODO add Icon column to all DB methods
+//TODO check that show icon stuff works
 //TODO db methods: check and return whether successful
 //TODO show list should be orderable
 //TODO option to set time zone. Apply to date display.
@@ -21,7 +21,7 @@ import android.widget.ListView;
 //TODO watched button onClick (increment next episode). Disable when not aired yet?
 //TODO adding, deleting shows
 //TODO get info from TheTVDB
-	//add tvdbID to Show class/db table?
+	//add tvdbID to Show class/db table? add unique constraint on tvdbID
 //TODO button to refresh data
 //TODO fix app icon
 //TODO use dark theme
@@ -35,12 +35,6 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		DatabaseHelper db = new DatabaseHelper(this);
-		
-		//----Example show list; remove once real show list is implemented
-		for (int i = 0; i <= 5; ++i) {
-			db.insert(new Show("show" + i, R.drawable.show_icon_default));
-		}
-		//----
 		
 		ArrayList<Show> shows = db.getShows();
 		ShowListAdapter adapter = new ShowListAdapter(this, R.layout.showlist_row, shows);

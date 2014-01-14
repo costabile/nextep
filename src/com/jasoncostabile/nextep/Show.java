@@ -2,7 +2,7 @@ package com.jasoncostabile.nextep;
 
 public class Show {
 	public int ID;				//used to find this show in the local DB
-	public int iconID;
+	public byte[] icon;
     public String title;
     public int nextEpisode;
     public long nextAirdate;	//milliseconds since Jan 1, 1970
@@ -11,12 +11,12 @@ public class Show {
         super();
     }
     
-    public Show(String title, int iconID) {
+    public Show(String title, byte[] icon) {
         super();
         
         this.ID = -1;	//-1 indicates that the show was not retrieved from the local database
         
-        this.iconID = iconID;
+        this.icon = icon;
         this.title = title;
         
         this.nextEpisode = 101;

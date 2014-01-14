@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +50,10 @@ public class ShowListAdapter extends ArrayAdapter<Show> {
         
         final Show show = shows.get(position);
         if (show != null) {
-            holder.icon.setImageResource(show.iconID);
+            //holder.icon.setImageResource(show.iconID);
+        	Drawable image = null;
+        	image = new BitmapDrawable(BitmapFactory.decodeByteArray(show.icon, 0, show.icon.length));
+            holder.icon.setImageDrawable(image);
             holder.icon.setContentDescription(show.title + " " + activity.getString(R.string.thumbnail));
             holder.title.setText(show.title);
         }
