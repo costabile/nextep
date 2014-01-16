@@ -1,9 +1,13 @@
 package com.jasoncostabile.nextep;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -11,9 +15,7 @@ import android.widget.ListView;
 
 //TheTVDB API key in privnotes.txt
 
-//TODO add Icon column to all DB methods
-//TODO check that show icon stuff works
-//TODO db methods: check and return whether successful
+//TODO have airdate display correctly
 //TODO show list should be orderable
 //TODO option to set time zone. Apply to date display.
 //TODO nextAirdate: representations for airdate unknown and show ended
@@ -36,6 +38,19 @@ public class MainActivity extends Activity {
 		
 		DatabaseHelper db = new DatabaseHelper(this);
 		
+
+		 //TODO ----Example show list; remove once real show list is implemented
+		 Drawable d = this.getResources().getDrawable(R.drawable.show_icon_default);
+		 Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
+		 ByteArrayOutputStream stream = new ByteArrayOutputStream();
+		 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+		 byte[] bitmapdata = stream.toByteArray();
+		 for (int i = 0; i <= 5; ++i) {
+			 db.insert(new Show("show" + i, bitmapdata));
+		 }
+		 //----
+		
+		 
 		ArrayList<Show> shows = db.getShows();
 		ShowListAdapter adapter = new ShowListAdapter(this, R.layout.showlist_row, shows);
 

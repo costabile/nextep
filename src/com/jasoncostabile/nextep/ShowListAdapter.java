@@ -30,6 +30,8 @@ public class ShowListAdapter extends ArrayAdapter<Show> {
 	public static class ViewHolder {
         public ImageView icon;
         public TextView title;
+        public TextView nextEpisode;
+        public TextView nextAirdate;
     }
 
 	@Override
@@ -43,6 +45,8 @@ public class ShowListAdapter extends ArrayAdapter<Show> {
             holder = new ViewHolder();
             holder.icon = (ImageView)v.findViewById(R.id.imgIcon);
             holder.title = (TextView)v.findViewById(R.id.txtTitle);
+            holder.nextEpisode = (TextView)v.findViewById(R.id.txtNextEpisode);
+            holder.nextAirdate = (TextView)v.findViewById(R.id.txtNextAirdate);
             v.setTag(holder);
         }
         else
@@ -50,12 +54,13 @@ public class ShowListAdapter extends ArrayAdapter<Show> {
         
         final Show show = shows.get(position);
         if (show != null) {
-            //holder.icon.setImageResource(show.iconID);
         	Drawable image = null;
-        	image = new BitmapDrawable(BitmapFactory.decodeByteArray(show.icon, 0, show.icon.length));
+        	image = new BitmapDrawable(activity.getResources(), BitmapFactory.decodeByteArray(show.icon, 0, show.icon.length));
             holder.icon.setImageDrawable(image);
             holder.icon.setContentDescription(show.title + " " + activity.getString(R.string.thumbnail));
             holder.title.setText(show.title);
+            String ep = show.nextEpisode < 10 ? "0" + Integer.toString(show.nextEpisode) : Integer.toString(show.nextEpisode);
+            holder.nextEpisode.setText(Integer.toString(show.nextEpSeason) + "x" + ep);
         }
         
         return v;
