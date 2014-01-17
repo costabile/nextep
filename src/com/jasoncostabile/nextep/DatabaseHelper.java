@@ -30,9 +30,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				 + colID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 				 + colTitle + " TEXT, "
 				 + colIcon + " BLOB, "
-				 + colNextEpSeason + " Integer, "
-				 + colNextEpisode + " Integer, "
-				 + colNextAirdate + " Integer "
+				 + colNextEpSeason + " INTEGER, "
+				 + colNextEpisode + " INTEGER, "
+				 + colNextAirdate + " INTEGER "
 				 + ");");
 	}
 
@@ -84,13 +84,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	{
 		SQLiteDatabase db = this.getReadableDatabase();
 		
-		String[] columns = new String[]{colID, colTitle, colIcon, colNextEpisode, colNextAirdate};
-		Cursor c = db.query(showTable, columns, null, null, null, null, null);
+		Cursor c = db.query(showTable, null, null, null, null, null, null);
 		
 		int id = c.getColumnIndex(colID);
 		int title = c.getColumnIndex(colTitle);
 		int icon = c.getColumnIndex(colIcon);
-		int nextEpSeason = c.getColumnIndex(colNextEpSeason);
+		int nextEpSeason = c.getColumnIndexOrThrow(colNextEpSeason);
 		int nextEpisode = c.getColumnIndex(colNextEpisode);
 		int nextAirdate = c.getColumnIndex(colNextAirdate);
 		ArrayList<Show> shows = new ArrayList<Show>();

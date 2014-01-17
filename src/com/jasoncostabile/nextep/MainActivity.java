@@ -15,7 +15,7 @@ import android.widget.ListView;
 
 //TheTVDB API key in privnotes.txt
 
-//TODO have airdate display correctly
+//TODO correct showlist display
 //TODO show list should be orderable
 //TODO option to set time zone. Apply to date display.
 //TODO nextAirdate: representations for airdate unknown and show ended

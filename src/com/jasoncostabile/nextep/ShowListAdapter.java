@@ -2,6 +2,11 @@ package com.jasoncostabile.nextep;
 
 import java.util.ArrayList;
 
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
@@ -55,12 +60,19 @@ public class ShowListAdapter extends ArrayAdapter<Show> {
         final Show show = shows.get(position);
         if (show != null) {
         	Drawable image = null;
+        	
         	image = new BitmapDrawable(activity.getResources(), BitmapFactory.decodeByteArray(show.icon, 0, show.icon.length));
             holder.icon.setImageDrawable(image);
             holder.icon.setContentDescription(show.title + " " + activity.getString(R.string.thumbnail));
+            
             holder.title.setText(show.title);
+            
             String ep = show.nextEpisode < 10 ? "0" + Integer.toString(show.nextEpisode) : Integer.toString(show.nextEpisode);
             holder.nextEpisode.setText(Integer.toString(show.nextEpSeason) + "x" + ep);
+            
+            DateTime d = new DateTime(show.nextAirdate, DateTimeZone.getDefault());
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm");
+            holder.nextAirdate.setText(d.toString(fmt));
         }
         
         return v;
