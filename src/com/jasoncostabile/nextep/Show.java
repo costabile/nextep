@@ -7,6 +7,7 @@ public class Show {
     public int nextEpSeason;
     public int nextEpisode;
     public long nextAirdate;	//milliseconds since Jan 1, 1970
+    public int sortKey;
     
     public Show(){
         super();

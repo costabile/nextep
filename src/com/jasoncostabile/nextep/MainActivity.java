@@ -15,9 +15,8 @@ import android.widget.ListView;
 
 //TheTVDB API key in privnotes.txt
 
-//TODO correct showlist display
-//TODO show list should be orderable
-//TODO option to set time zone. Apply to date display.
+//TODO show list should be orderable -- give SortKey a default value (end of list), use SortKey to order list, have algorithm for reordering 
+//TODO format next airdate as "today"/"tomorrow" appropriately
 //TODO nextAirdate: representations for airdate unknown and show ended
 //TODO detail screen for show when clicked on? + edit current ep
 //TODO watched button onClick (increment next episode). Disable when not aired yet?

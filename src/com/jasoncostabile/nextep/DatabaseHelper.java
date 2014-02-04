@@ -19,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	static final String colNextEpSeason = "NextEpSeason";
 	static final String colNextEpisode = "NextEpisode";
 	static final String colNextAirdate = "NextAirdate";		//stored as milliseconds since Jan. 1, 1970
+	static final String colSortKey = "SortKey";
 
 	public DatabaseHelper(Context context) {
 		super(context, dbName, null, 1);	//increment database version number when a DB upgrade is required.
@@ -32,7 +33,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				 + colIcon + " BLOB, "
 				 + colNextEpSeason + " INTEGER, "
 				 + colNextEpisode + " INTEGER, "
-				 + colNextAirdate + " INTEGER "
+				 + colNextAirdate + " INTEGER, "
+				 + colSortKey + " INTEGER "
 				 + ");");
 	}
 
@@ -51,6 +53,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		cv.put(colNextEpSeason, show.nextEpSeason);
 		cv.put(colNextEpisode, show.nextEpisode);
 		cv.put(colNextAirdate, show.nextAirdate);
+		cv.put(colSortKey, show.sortKey);
 		db.insert(showTable, colID, cv);
 
 		db.close();
@@ -67,6 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		cv.put(colNextEpSeason, show.nextEpSeason);
 		cv.put(colNextEpisode, show.nextEpisode);
 		cv.put(colNextAirdate, show.nextAirdate);
+		cv.put(colSortKey, show.sortKey);
 		return db.update(showTable, cv, colID+"=?", 
 				new String[]{String.valueOf(show.ID)});   
 	}
@@ -86,12 +90,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		
 		Cursor c = db.query(showTable, null, null, null, null, null, null);
 		
-		int id = c.getColumnIndex(colID);
-		int title = c.getColumnIndex(colTitle);
-		int icon = c.getColumnIndex(colIcon);
+		int id = c.getColumnIndexOrThrow(colID);
+		int title = c.getColumnIndexOrThrow(colTitle);
+		int icon = c.getColumnIndexOrThrow(colIcon);
 		int nextEpSeason = c.getColumnIndexOrThrow(colNextEpSeason);
-		int nextEpisode = c.getColumnIndex(colNextEpisode);
-		int nextAirdate = c.getColumnIndex(colNextAirdate);
+		int nextEpisode = c.getColumnIndexOrThrow(colNextEpisode);
+		int nextAirdate = c.getColumnIndexOrThrow(colNextAirdate);
+		int sortKey = c.getColumnIndexOrThrow(colSortKey);
 		ArrayList<Show> shows = new ArrayList<Show>();
 		while (c.moveToNext()) {
 			Show show = new Show(c.getString(title), c.getBlob(icon));
@@ -99,6 +104,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			show.nextEpSeason = c.getInt(nextEpSeason);
 			show.nextEpisode = c.getInt(nextEpisode);
 			show.nextAirdate = c.getLong(nextAirdate);
+			show.sortKey = c.getInt(sortKey);
 			
 			shows.add(show);
 		}
